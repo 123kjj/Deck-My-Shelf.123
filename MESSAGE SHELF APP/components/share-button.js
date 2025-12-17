@@ -1,30 +1,49 @@
-class ShareButton extends HTMLElement {
-    connectedCallback() {
-      this.attachShadow({ mode: 'open' });
-      this.shadowRoot.innerHTML = `
-        <style>
-          button {
-            background: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            cursor: pointer;
-          }
-          img {
-            width: 24px;
-            height: 24px;
-          }
-        </style>
-        <button>
-          <img src="share.png" alt="Share">
-        </button>
-      `;
-    }
-  }
-  
-  customElements.define('share-button', ShareButton);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Deck My Shelf</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="relative overflow-hidden">
+<div id="app" class="w-[390px] h-[617px] relative overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-[url('homepage.png')] bg-cover bg-center"></div>
+
+  <!-- Shelves -->
+  <div id="shelves" class="absolute left-[68px] w-[254px] h-[400px] top-[131px]">
+    <img src="shelf.png" alt="Shelves" class="w-full h-full">
+    <div id="toy-container" class="absolute inset-0 pointer-events-none"></div>
+  </div>
+
+  <!-- Share Button -->
+  <button id="share-btn" class="absolute bottom-[120px] left-4 bg-white p-2 rounded-full shadow-md">
+    <img src="share.png" alt="Share" class="w-6 h-6">
+  </button>
+
+  <!-- Instructions -->
+  <div class="absolute top-4 left-4 right-4 bg-white bg-opacity-80 rounded-lg p-2 text-sm text-center">
+    Drag toys onto the shelf. Click on placed toys to add/edit messages.
+  </div>
+
+  <!-- Toy Menu -->
+  <div id="toy-menu" class="absolute bottom-0 left-0 right-0 h-[100px] bg-white bg-opacity-90 flex items-center justify-center space-x-2 px-2 overflow-x-auto"></div>
+
+  <!-- Message Popup -->
+  <div id="message-popup" class="hidden absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-4 w-[300px]">
+      <h3 class="text-lg font-bold mb-2">Add a Message</h3>
+      <textarea id="message-input" class="w-full border rounded p-2 mb-2" placeholder="Write something about this person..."></textarea>
+      <div class="flex justify-end space-x-2">
+        <button id="cancel-btn" class="px-4 py-2 bg-gray-200 rounded">Cancel</button>
+        <button id="save-btn" class="px-4 py-2 bg-blue-500 text-white rounded">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
