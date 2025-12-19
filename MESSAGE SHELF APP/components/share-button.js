@@ -1,38 +1,42 @@
-class ShareButton extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
-      <style>
-        button {
-          background: white;
-          border: none;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-          cursor: pointer;
-        }
-        img {
-          width: 24px;
-          height: 24px;
-        }
-      </style>
-      <button>
-        <img src="share.png" alt="Share">
-      </button>
-    `;
-
-    this.shadowRoot.querySelector('button').addEventListener('click', () => {
-      const treeId = new URLSearchParams(window.location.search).get('tree') || 'tree-default';
-      const shareUrl = `https://123kjj.github.io/Deck-My-Shelf.123/?tree=${treeId}`;
-      navigator.clipboard.writeText(shareUrl)
-        .then(() => alert('Link copied! Share it with friends.'))
-        .catch(() => alert('Copy manually: ' + shareUrl));
-    });
-  }
+class ToyItem extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+    }
+    
+    connectedCallback() {
+        this.render();
+    }
+    
+    render() {
+        const item = this.getAttribute('item');
+        const x = this.getAttribute('x') || '50';
+        const y = this.getAttribute('y') || '50';
+        const note = this.getAttribute('note') || '';
+        
+        this.shadowRoot.innerHTML = `
+            <style>
+                :host {
+                    position: absolute;
+                    cursor: move;
+                    z-index: 15;
+                }
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    pointer-events: none;
+                }
+            </style>
+            <div class="toy" data-item="${item}">
+                <img src="${item}item.png" alt="Toy ${item}">
+            </div>
+        `;
+        
+        this.style.left = `${x}px`;
+        this.style.top = `${y}px`;
+    }
 }
 
-customElements.define('share-button', ShareButton);
+customElements.define('toy-item', ToyItem);
