@@ -1,48 +1,53 @@
+/* Base styles */
 body {
-  margin: 0;
-  padding: 0;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-#app {
-  position: relative;
-  margin: 0 auto;
-  overflow: hidden;
-  touch-action: none;
-}
-
+/* Toy item styles */
 .toy-item {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  touch-action: none;
-  user-select: none;
-  z-index: 10;
-  cursor: grab;
-  transition: transform 0.1s;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    cursor: grab;
+    transition: transform 0.2s;
 }
 
 .toy-item:active {
-  cursor: grabbing;
-  transform: scale(1.1);
-  z-index: 20;
+    cursor: grabbing;
 }
 
-#toy-menu img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  touch-action: none;
-  cursor: pointer;
-  transition: transform 0.2s;
+/* Draggable toy styles */
+.draggable-toy {
+    position: absolute;
+    z-index: 15;
+    cursor: move;
 }
 
-#toy-menu img:active {
-  transform: scale(1.1);
+/* Scrollbar styles for toy menu */
+::-webkit-scrollbar {
+    height: 6px;
 }
 
-#message-popup textarea {
-  min-height: 100px;
-  resize: none;
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+/* Animation for confirmation alert */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#confirmationAlert {
+    animation: fadeInOut 3s ease-in-out forwards;
 }
