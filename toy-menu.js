@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deck My Shelf</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body class="relative w-full h-screen overflow-hidden bg-gray-100">
+    <div class="absolute inset-0 w-full h-full bg-[url('homepage.png')] bg-cover bg-center"></div>
+    
+    <!-- Shelf Area -->
+    <div id="shelfContainer" class="absolute left-[68px] top-[131px] w-[254px] h-[400px] z-10"></div>
+    
+    <!-- Share Button -->
+    <div id="shareBtn" class="absolute bottom-[150px] left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center cursor-pointer z-20">
+        <img src="share.png" alt="Share" class="w-8 h-8">
+    </div>
+    
+    <!-- Toys Menu -->
+    <div class="absolute bottom-0 w-full h-[120px] bg-white bg-opacity-90 overflow-x-auto overflow-y-hidden flex items-center px-4 space-x-4 z-30">
+        <!-- Toy items will be injected here by JavaScript -->
+    </div>
+    
+    <!-- Modal -->
+    <div id="noteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-80">
+            <h3 class="text-lg font-bold mb-4">Add a Note</h3>
+            <textarea id="noteText" class="w-full p-2 border rounded mb-4" rows="4" placeholder="Write a message about someone special..."></textarea>
+            <div class="flex justify-end space-x-2">
+                <button id="cancelNote" class="px-4 py-2 border rounded">Cancel</button>
+                <button id="saveNote" class="px-4 py-2 bg-blue-500 text-white rounded">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Alert -->
+    <div id="confirmationAlert" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded hidden z-50">
+        Link copied to clipboard!
+    </div>
+
+    <script src="script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
