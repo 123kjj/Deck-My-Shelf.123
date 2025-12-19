@@ -236,6 +236,8 @@ function setupEventListeners() {
         }
     });
 }
-
 // Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', () => {
+    document.title = "Shelfie Shenanigans 🎭";
+    initApp();
+});
